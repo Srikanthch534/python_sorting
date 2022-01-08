@@ -1,0 +1,295 @@
+The sort() method sorts the elements of a given list in a specific ascending or descending order.
+
+
+***sort() Parameters
+By default, sort() doesn't require any extra parameters. However, it has two optional parameters:
+
+*reverse - If True, the sorted list is reversed (or sorted in Descending order)
+*key - function that serves as a key for the sort comparison
+
+#sorting the numbers in acending order
+
+numbers=[1,2,5,45,85]
+print(numbers)  #[1, 2, 5, 45, 85]
+numbers.sort()
+print(numbers)  #[1, 2, 5, 45, 85]
+
+#sorting the numbers in descending order
+numbers=[1,2,5,45,85]
+print(numbers)     #[1, 2, 5, 45, 85]
+numbers.sort(reverse=True)
+print(numbers)     #[85, 45, 5, 2, 1]
+
+
+#sorting the strings in ascending order
+lst=['python','java','abc','c']
+print(lst) #['python', 'java', 'abc', 'c']
+lst.sort()
+print(lst) #['abc', 'c', 'java', 'python']
+
+
+#sorting the strings in descending order
+lst=['python','java','abc','c']
+print(lst)    #['python', 'java', 'abc', 'c']
+lst.sort(reverse=True)
+print(lst)    #['python', 'java', 'c', 'abc']
+
+
+
+Sorting alogorithms in python
+1.bubble sort
+2.merge sort
+3.insertion sort
+4.quick sort
+5.selection sort
+6.heap sort
+7.radix sort
+8.bucket sort
+
+
+SELECTION SORT
+
+
+condition:
+if lst[j]<lst[i]:
+       lst[i],lst[j]=lst[j],lst[i]
+
+boundary condition:
+i:range(0,len(lst)-1)
+j:range(i+1,len(lst))
+
+
+ex:1
+
+lst=[10,40,20,60,45]
+print(lst)            #before sorting [10, 40, 20, 60, 45]
+for i in range(0,len(lst)-1):
+    for j in range(i+1,len(lst)):
+        if lst[j]<lst[i]:
+            lst[i],lst[j]=lst[j],lst[i]
+            
+print(lst)           #after sorting    [10, 20, 40, 45, 60]
+
+
+
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Jan  8 19:05:37 2022
+
+@author: pc
+"""
+
+
+'''
+class footballer:
+    def __init__(self,name,goals,assist):
+        self.name=name
+        self.goals=goals
+        self.assist=assist
+        
+    def display(self):
+        print(self.__dict__)
+        
+f1=footballer('srikanth', 560, 320) 
+f2=footballer('ravi', 760, 254) 
+f1.display() #{'name': 'srikanth', 'goals': 560, 'assist': 320}
+f2.display() #{'name': 'ravi', 'goals': 760, 'assist': 254}
+'''
+
+'''
+class footballer:
+    def __init__(self,name,goals,assist):
+        self.name=name
+        self.goals=goals
+        self.assist=assist
+        
+    def display(self):
+        print(self.__dict__)
+        
+    def __lt__(self,other):
+        if self.goals<self.goals:
+            return True
+        else:
+            return False
+        
+f1=footballer('srikanth', 560, 320) 
+f2=footballer('ravi', 760, 254) 
+print(f1<f2) #False
+
+
+
+class footballer:
+    def __init__(self,name,goals,assist):
+        self.name=name
+        self.goals=goals
+        self.assist=assist
+        
+    def display(self):
+        print(self.__dict__)
+        
+    def __gt__(self,other):
+        if self.goals<other.goals:
+            return True
+        else:
+            return False
+        
+f1=footballer('srikanth', 560, 320) 
+f2=footballer('ravi', 760, 254) 
+print(f1>f2) #False
+
+
+#sorting in user defined functions 
+class footballer:
+    def __init__(self,name,goals,assist):
+        self.name=name
+        self.goals=goals
+        self.assist=assist
+        
+    def display(self):
+        print(self.__dict__)
+        
+    def __lt__(self,other):
+        if self.goals<other.goals:
+            return True
+        else:
+            return False
+        
+    def __str__(self):
+        return f'{self.name} {self.goals} {self.assist}'
+    
+def sort_footballer(lst):
+    for i in range(0,len(lst)-1):
+        for j in range(i+1,len(lst)):
+                if lst[j]<lst[i]:
+                    lst[i],lst[j]=lst[j],lst[i]
+                
+        
+f1=footballer('srikanth', 560, 320) 
+f2=footballer('ravi', 760, 254) 
+f3=footballer('ramu', 456, 845)
+f4=footballer('pk', 693, 784)
+
+lst=[f1,f2,f3,f4]
+sort_footballer(lst)
+
+for i in lst:
+    print(i)
+    
+    
+ramu 456 845
+srikanth 560 320
+pk 693 784
+ravi 760 254
+    
+'''
+
+'''
+#optimized code in ascending order     by sort() builtin function
+
+class footballer:
+    def __init__(self,name,goals,assist):
+        self.name=name
+        self.goals=goals
+        self.assist=assist
+        
+    def __lt__(self,other):
+        return self.goals<other.goals
+            
+        
+    def __str__(self):
+        return f'{self.name} {self.goals} {self.assist}'
+
+                
+        
+f1=footballer('srikanth', 560, 320) 
+f2=footballer('ravi', 760, 254) 
+f3=footballer('ramu', 456, 845)
+f4=footballer('pk', 693, 784)
+
+lst=[f1,f2,f3,f4]
+lst.sort()
+
+for i in lst:
+    print(i)
+
+ramu 456 845
+srikanth 560 320
+pk 693 784
+ravi 760 254  
+
+'''   
+
+'''
+#optimized code in descending order      by sort() builtin function
+
+class footballer:
+    def __init__(self,name,goals,assist):
+        self.name=name
+        self.goals=goals
+        self.assist=assist
+        
+    def __lt__(self,other):
+        return self.goals>other.goals
+            
+        
+    def __str__(self):
+        return f'{self.name} {self.goals} {self.assist}'
+
+                
+        
+f1=footballer('srikanth', 560, 320) 
+f2=footballer('ravi', 760, 254) 
+f3=footballer('ramu', 456, 845)
+f4=footballer('pk', 693, 784)
+
+lst=[f1,f2,f3,f4]
+lst.sort()
+
+for i in lst:
+    print(i)
+    
+    
+ravi 760 254
+pk 693 784
+srikanth 560 320
+ramu 456 845 
+'''
+
+'''
+#optimized code in descending order   by using sort() reverse function
+
+class footballer:
+    def __init__(self,name,goals,assist):
+        self.name=name
+        self.goals=goals
+        self.assist=assist
+        
+    def __lt__(self,other):
+        return self.goals<other.goals
+            
+        
+    def __str__(self):
+        return f'{self.name} {self.goals} {self.assist}'
+
+                
+        
+f1=footballer('srikanth', 560, 320) 
+f2=footballer('ravi', 760, 254) 
+f3=footballer('ramu', 456, 845)
+f4=footballer('pk', 693, 784)
+
+lst=[f1,f2,f3,f4]
+lst.sort(reverse=True)
+
+for i in lst:
+    print(i)  
+    
+    
+ravi 760 254
+pk 693 784
+srikanth 560 320
+ramu 456 845    
+'''   
+
+
+
